@@ -29,7 +29,7 @@ if (!require(pROC)) install.packages('pROC')
 library(pROC)
 source("decisionplot.R")
 
-######## 2(a) Exploratory Data Analysis ###############
+######## Exploratory Data Analysis ###############
 head(bankruptcy)
 # 4 Variables and one response. So we get rig of the extra columns
 bankruptcy = bankruptcy[1:5]
@@ -49,7 +49,7 @@ boxplot(bankruptcy$X3~bankruptcy$Group,data=bankruptcy,
 boxplot(bankruptcy$X4~bankruptcy$Group,data=bankruptcy, 
         main="Boxplot for X4 =(current assets)/(net sales) vs Group", 
         xlab="Group", ylab="X4")
-############## 2(b) Logistic Regression ################
+############## Logistic Regression ################
 # Building different models
 logit.model1234 <- glm(Group ~ X1 + X2 + X3 + X4, family = binomial, data = bankruptcy)
 logit.model123 <- glm(Group ~ X1 + X2 + X3 , family = binomial, data = bankruptcy)
@@ -75,7 +75,7 @@ anova(logit.model23, logit.model123, test = "Chisq")
 # Decision: Pr(>Chi) 0.1282 > 0.05 - Reject the null hypothesis.
 anova(logit.model13, logit.model1234, test = "Chisq")
 # Decision: Pr(>Chi) 0.5509 > 0.05 - Accept the null hypothesis.
-################ 3(a) #########################
+################ ROC Decision Boundary #########################
 # Test and Train Data
 bank.test <- subset(bankruptcy, (X3 > 4.15) | (X3<1.15))
 bank.train <- subset(bankruptcy, (X3 < 4.15)& (X3>1.15))
@@ -102,7 +102,6 @@ decisionplot(model, bankruptcy[1:46, c("X1", "X3", "Group")], class = "Group", m
 # Equation for the Decision Boundary
 model
 
-################ 3(b) #########################
 # Test and Train Data
 bank.test <- subset(bankruptcy, (X3 > 4.15) | (X3<1.15))
 bank.train <- subset(bankruptcy, (X3 < 4.15)& (X3>1.15))
@@ -127,8 +126,6 @@ model
 # This is a hyper plane of dimension four nested in a 5 dimensional space and so we cannot plot it in R
 
 
-
-################ 3(c) #######################
 fit.model <- lda(Group ~ X1 + X3, data = bank.train)
 fit.model
 # Test Error Rate  
@@ -144,7 +141,6 @@ roc.lr
 decisionplot(model, bankruptcy[1:46, c("X1", "X3", "Group")], class = "Group", main = "LDA")
 
 
-################ 3(d) #######################
 fit.model <- qda(Group ~ X1 + X3, data = bank.train)
 fit.model
 # Test Error Rate  
