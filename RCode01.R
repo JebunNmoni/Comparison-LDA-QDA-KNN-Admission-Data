@@ -42,7 +42,7 @@ testDatagroup3 = group3[(nrow(group3)-testDataFronEachGroup+1):nrow(group3),]
 trainingData = rbind(trainingDatagroup1, trainingDatagroup2, trainingDatagroup3)
 testData = rbind(testDatagroup1, testDatagroup2, testDatagroup3)
 
-# 1(b) LDA
+# LDA
 lda.fit = lda(Group~GPA+GMAT, data=trainingData)
 lda.fit
 plot(lda.fit)
@@ -64,7 +64,7 @@ legend("topleft", pch=c(3,2,4), col=c("green", "red","blue"), c("Group 1", "Grou
 1-mean(lda.pred$class == testData$Group)
 
 
-# 1(c) QDA
+# QDA
 
 qda.fit = qda(Group~GPA+GMAT, data=trainingData)
 qda.fit
