@@ -6,7 +6,7 @@ dev.off()
 rm(list=ls(all=TRUE)) 
 
 # Set working directory
-setwd('C:\\Users\\Md Arafat H Khan\\Dropbox\\Academics - University of Texas at Dallas\\STAT 6340.18s Statistical and Machine Learning - Spring 2018\\Mini Projects\\Project 03')
+setwd('FolderPath')
 # Load Data
 bankruptcy = read.csv("bankruptcy.csv")
 
