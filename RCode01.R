@@ -15,7 +15,7 @@ setwd('FolderPath')
 # Load Data
 admission = read.csv("admission.csv")
 
-#### Exploratory Data Analysis ####
+#### Exploratory Data Analysis (Whole Analysis is not given here) ####
 str(admission)
 plot(admission$GPA,admission$Group)
 plot(admission$GMAT,admission$Group)
